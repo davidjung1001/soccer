@@ -13,7 +13,7 @@ import Footer from "./components/Footer";   // <<--- New
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
         {/* Navbar always at top */}
         <Navbar />
