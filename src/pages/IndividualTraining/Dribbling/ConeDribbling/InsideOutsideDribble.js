@@ -3,9 +3,9 @@ const InsideOutsideDribble = () => {
       <div className="p-6 max-w-2xl mx-auto text-center">
         <h1 className="text-4xl font-bold">Inside-Outside Dribble</h1>
   
-        {/* Embedded Video */}
+        {/* Embedded Video - Updated Path */}
         <video className="w-full h-64 rounded-lg shadow-lg mt-4" controls>
-          <source src="/videos/inside-outside-dribble.mp4" type="video/mp4" />
+          <source src={`${process.env.PUBLIC_URL}/videos/inside-outside-dribble.mp4`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
   

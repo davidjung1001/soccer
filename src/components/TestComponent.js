@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 
 const TestComponent = ({ title, description, link }) => {
-  const imagePath = `/images/${title.toLowerCase().replace(/\s+/g, "-")}.jpg`;
+  const imagePath = `${process.env.PUBLIC_URL}/images/${title.toLowerCase().replace(/\s+/g, "-")}.jpg`;
+    
 
   return (
     <Link
