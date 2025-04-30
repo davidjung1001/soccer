@@ -1,20 +1,34 @@
+import { auth } from "../firebase/firebaseConfig";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { logoutUser } from "../services/authService";
 
 const Navbar = () => {
-  return (
-    <nav className="bg-blue-600 text-white py-4 shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-        {/* Clickable Title - Navigates to Home */}
-        <Link to="/" className="text-2xl font-bold hover:underline">
-          Soccer Training
-        </Link>
+  const [user, setUser] = useState(null);
 
-        {/* Navigation Links */}
-        <ul className="flex space-x-6">
-          <li><Link to="/individual-training" className="hover:underline">Individual Training</Link></li>
-          <li><Link to="/team-drills" className="hover:underline">Team Drills</Link></li>
-        </ul>
-      </div>
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe(); // Clean up listener
+  }, []);
+
+  return (
+    <nav className="p-4 bg-gray-800 text-white flex justify-between">
+      <Link to="/">🏠 Home</Link>
+      <Link to="/tactical-masterclass">⚽ Tactical Masterclass</Link>
+
+      {user ? (
+        <div className="flex items-center gap-4">
+          <span>Welcome, {user.email}!</span>
+          <button onClick={logoutUser} className="px-3 py-2 bg-red-500 rounded">Log Out</button>
+        </div>
+      ) : (
+        <div className="flex gap-4">
+          <Link to="/login" className="px-3 py-2 bg-blue-500 rounded">Login</Link>
+          <Link to="/register" className="px-3 py-2 bg-green-500 rounded">Sign Up</Link>
+        </div>
+      )}
     </nav>
   );
 };

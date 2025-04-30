@@ -17,6 +17,12 @@ const Home = () => {
       description: "Strategic team exercises to improve coordination and tactics.",
       link: "/team-drills",
     },
+    {
+      title: "Tactical Masterclass",
+      description: "Deep dive into formations and positional strategies.",
+      link: "/tactical-masterclass",
+    },
+  
   ];
 
   return (
